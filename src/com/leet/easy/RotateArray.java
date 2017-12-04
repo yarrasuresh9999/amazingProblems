@@ -21,14 +21,33 @@ public class RotateArray {
             }
             nums[newIndex] = temp[i];
         }
-        for(int i = 0; i < nums.length; i++) {
+    }
+	
+	public void rotateWithSameSpace(int[] nums, int k) {
+		k = k % nums.length;
+		reverseArray(nums, 0, nums.length -1);
+		reverseArray(nums, 0, k -1);
+		reverseArray(nums, k, nums.length -1);
+		
+		for(int i = 0; i < nums.length; i++) {
         	System.out.print(nums[i]+ "\t");
         }
-    }
+	}
+	
+	public void reverseArray(int[] arr, int start, int end) {
+		while(start < end) {
+			int temp = arr[start];
+			arr[start] = arr[end];
+			arr[end] = temp;
+			start++;
+			end--;
+		}
+	}
 	
 	public static void main(String[] args) {
 		int[] nums = new int[]{1,2,3,4,5,6};
 		RotateArray ra = new RotateArray();
-		ra.rotate(nums, 3);
+//		ra.rotate(nums, 3);
+		ra.rotateWithSameSpace(nums, 3);
 	}
 }
